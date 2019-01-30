@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 
 class SearchInput extends Component {
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.props.updateSearch((e.target.flightID.value));
+  }
+
   render() {
     return (
       <div>
-        <form>
-          <input type='number' placeholder='Введите номер рейса' />
+        <form onSubmit={this.handleSubmit}>
+          <input type='number' name='flightID' placeholder='Введите номер рейса' />
           <input type='submit' value='Поиск' />
         </form>
       </div>
