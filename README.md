@@ -36,3 +36,56 @@ Ticker.prototype = {
 var ticker = new Ticker();
 setInterval(ticker.tick, 1000);
 ```
+
+Решение
+=======
+
+1) Самым простым вариантом исправления программы будет измение функции Ticker так, чтобы переменная `_i` была доступна вне области видимости функции. В таком случае код будет иметь следующий вид:
+
+```
+function Ticker() {
+  _i = 0
+};
+
+Ticker.prototype = {
+  tick: function() {
+  console.log(this._i++);
+  }
+};
+
+var ticker = new Ticker();
+setInterval(ticker.tick, 1000);
+```
+
+2) Другим вариантом будет передача контекста с помощью функции bind(). В таком случае область видимости Ticker() будет доступна для использования в других областях видимости. Код:
+
+```
+function Ticker() {
+  this._i = 0;
+}
+
+Ticker.prototype = {
+  tick: function() {
+  console.log(this._i++);
+  }
+};
+
+var ticker = new Ticker();
+setInterval(ticker.tick.bind(Ticker()), 1000);
+```
+
+3) Более новым подходом будет использование стрелочной функции. Таким образом контект передастся в tick(). Код:
+```
+function Ticker() {
+  this._i = 0;
+}
+
+Ticker.prototype = {
+  tick: function() {
+  console.log(this._i++);
+  }
+};
+
+var ticker = new Ticker();
+setInterval(() => {ticker.tick()}, 1000);
+```
