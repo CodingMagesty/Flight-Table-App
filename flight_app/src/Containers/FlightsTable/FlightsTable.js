@@ -12,7 +12,11 @@ class FlightsTable extends Component {
     const filterdDB = this.adjustDB();
 
     if(isNaN(this.props.search)) {
+<<<<<<< HEAD
       return filterdDB.filter(flight => flight.from.toLowerCase().includes(this.props.search.toLowerCase()));
+=======
+      return filterdDB.filter(flight => flight.from.includes(this.props.search));
+>>>>>>> 7cefcbbb9c97c9bd29bee80bc4eac597f54a63d2
     } else {
       return filterdDB.filter(flight => flight.number.includes(this.props.search))
     }
