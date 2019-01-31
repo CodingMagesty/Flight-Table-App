@@ -42,7 +42,7 @@ export default [
   {
     'id': 5,
     'number': 'SU 7652',
-    'from': 'Кёльн',
+    'from': 'Москва',
     'departured': '11:00',
     'arrived': '13:30',
     'status': 'departured'
@@ -50,7 +50,7 @@ export default [
   {
     'id': 6,
     'number': 'SU 000',
-    'from': 'Астана',
+    'from': 'Москва',
     'departured': '20:00',
     'arrived': '23:20',
     'status': 'departured'
@@ -58,7 +58,7 @@ export default [
   {
     'id': 7,
     'number': 'SU 732',
-    'from': 'Хельсинки',
+    'from': 'Москва',
     'departured': '9:45',
     'arrived': '17:00',
     'status': 'departured'
@@ -66,7 +66,7 @@ export default [
   {
     'id': 8,
     'number': 'SU 666',
-    'from': 'Берлин',
+    'from': 'Москва',
     'departured': '01:00',
     'arrived': '23:00',
     'status': 'departured'
@@ -74,7 +74,7 @@ export default [
   {
     'id': 9,
     'number': 'SU 912',
-    'from': 'Сеул',
+    'from': 'Москва',
     'departured': '8:30',
     'arrived': '12:40',
     'status': 'departured'

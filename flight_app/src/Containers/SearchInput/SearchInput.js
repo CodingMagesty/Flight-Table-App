@@ -11,7 +11,7 @@ class SearchInput extends Component {
     const { search } = this.props;
     return (
       <div>
-        <TextField label="Номер Рейса" value={search} onChange={this.handleChange} style={{margin: '2%'}}/>
+        <TextField label="Номер Рейса или Город" value={search} onChange={this.handleChange} style={{margin: '2%'}}/>
       </div>
     );
   }

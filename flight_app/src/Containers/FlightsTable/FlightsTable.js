@@ -5,13 +5,21 @@ import DB from '../../DataBase/database.js';
 
 class FlightsTable extends Component {
   adjustDB = () => {
-    return DB.filter(flight => flight['status'] === this.props.currentFilter);
+    return DB.filter(flight => flight.status === this.props.currentFilter);
+  }
+
+  filterDBbySubStr = () => {
+    const filterdDB = this.adjustDB();
+
+    if(isNaN(this.props.search)) {
+      return filterdDB.filter(flight => flight.from.includes(this.props.search));
+    } else {
+      return filterdDB.filter(flight => flight.number.includes(this.props.search))
+    }
   }
 
   render() {
-    const filterdDB = this.adjustDB();
-    console.log();
-    if (!this.props.search) {
+    const filterdDB = (!this.props.search) ? this.adjustDB() : this.filterDBbySubStr();
       return(
         <div>
           <Paper>
@@ -19,7 +27,7 @@ class FlightsTable extends Component {
               <TableHead>
                 <TableRow>
                   <TableCell>Номер Рейса</TableCell>
-                  <TableCell>Аэропорт Отправления</TableCell>
+                  <TableCell>Город Отправления</TableCell>
                   <TableCell>Отправление</TableCell>
                   <TableCell>Прибытие</TableCell>
                 </TableRow>
@@ -40,12 +48,7 @@ class FlightsTable extends Component {
           </Paper>
         </div>
       );
-    } else {
-      return (
-        <p>{this.props.search}</p>
-      );
     }
-  }
 }
 
 export default FlightsTable;
