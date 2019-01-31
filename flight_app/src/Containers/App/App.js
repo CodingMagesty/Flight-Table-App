@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './App.css';
 import SearchInput from '../SearchInput/SearchInput';
 import Filters from '../Filters/Filters';
 import FlightsTable from '../FlightsTable/FlightsTable';
@@ -23,9 +24,9 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <SearchInput updateSearch={this.updateSearch}/>
+      <div className="container">
         <Filters updateFilter={this.updateFilter}/>
+        <SearchInput updateSearch={this.updateSearch} search={this.state.search}/>
         <FlightsTable search={this.state.search}/>
       </div>
     );

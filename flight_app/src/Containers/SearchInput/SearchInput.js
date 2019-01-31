@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
+import { TextField }  from '@material-ui/core';
 
 class SearchInput extends Component {
-  handleSubmit = (e) => {
+  handleChange = (e) => {
     e.preventDefault();
-    this.props.updateSearch((e.target.flightID.value));
+    this.props.updateSearch((e.currentTarget.value));
   }
 
   render() {
+    const { search } = this.props;
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
-          <input type='number' name='flightID' placeholder='Введите номер рейса' />
-          <input type='submit' value='Поиск' />
-        </form>
+        <TextField label="Номер Рейса" value={search} onChange={this.handleChange} style={{margin: '2%'}}/>
       </div>
     );
   }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Button } from '@material-ui/core';
 
 class Filters extends Component {
   clickHandler = (e, filter) => {
@@ -10,9 +11,9 @@ class Filters extends Component {
     return(
       <div>
         <form>
-          <button onClick={(e) => this.clickHandler(e, 'departured')}>Вылетевшие</button>
-          <button onClick={(e) => this.clickHandler(e, 'arrived')}>Прибывшие</button>
-          <button onClick={(e) => this.clickHandler(e, 'delayed')}>Задержанные</button>
+          <Button size="large" color='primary' onClick={(e) => this.clickHandler(e, 'departured')}>Вылетевшие</Button>
+          <Button size="large" onClick={(e) => this.clickHandler(e, 'arrived')}>Прибывшие</Button>
+          <Button size="large" onClick={(e) => this.clickHandler(e, 'delayed')}>Задержанные</Button>
         </form>
       </div>
     );
