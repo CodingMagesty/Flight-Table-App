@@ -27,7 +27,7 @@ class App extends Component {
       <div className="container">
         <Filters updateFilter={this.updateFilter} currentFilter={this.state.currentFilter}/>
         <SearchInput updateSearch={this.updateSearch} search={this.state.search}/>
-        <FlightsTable search={this.state.search}/>
+        <FlightsTable search={this.state.search} currentFilter={this.state.currentFilter}/>
       </div>
     );
   }
