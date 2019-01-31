@@ -9,7 +9,7 @@ class App extends Component {
     super(props);
     this.state = {
       loading: true,
-      currentFilter: 'arrived',
+      currentFilter: 'departured',
       search: ''
     }
   }
@@ -25,7 +25,7 @@ class App extends Component {
   render() {
     return (
       <div className="container">
-        <Filters updateFilter={this.updateFilter}/>
+        <Filters updateFilter={this.updateFilter} currentFilter={this.state.currentFilter}/>
         <SearchInput updateSearch={this.updateSearch} search={this.state.search}/>
         <FlightsTable search={this.state.search}/>
       </div>

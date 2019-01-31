@@ -8,12 +8,25 @@ class Filters extends Component {
   }
 
   render() {
+    console.log(this.props.currentFilter)
     return(
       <div>
         <form>
-          <Button size="large" color='primary' onClick={(e) => this.clickHandler(e, 'departured')}>Вылетевшие</Button>
-          <Button size="large" onClick={(e) => this.clickHandler(e, 'arrived')}>Прибывшие</Button>
-          <Button size="large" onClick={(e) => this.clickHandler(e, 'delayed')}>Задержанные</Button>
+          <Button
+            size="large" color={this.props.currentFilter === 'departured' ? 'primary' : 'default'}
+            onClick={(e) => this.clickHandler(e, 'departured')}>
+              Вылетевшие
+          </Button>
+          <Button
+            size="large" color={this.props.currentFilter === 'arrived' ? 'primary' : 'default'}
+            onClick={(e) => this.clickHandler(e, 'arrived')}>
+              Прибывшие
+          </Button>
+          <Button
+            size="large" color={this.props.currentFilter === 'delayed' ? 'primary' : 'default'}
+            onClick={(e) => this.clickHandler(e, 'delayed')}>
+              Задержанные
+          </Button>
         </form>
       </div>
     );
