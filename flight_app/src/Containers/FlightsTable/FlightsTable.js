@@ -5,14 +5,14 @@ import PropTypes from 'prop-types';
 import DB from '../../DataBase/database.js';
 
 class FlightsTable extends Component {
-  adjustDB = () => {
-    return DB.filter(flight => flight.status === this.props.currentFilter);
-  }
-
+  // Отфильтруем БД по текущему фильтру,
+  // а затем будем проверять на наличие в оставшихся полях search.
   filterDBbySubStr = () => {
-    const filterdDB = this.adjustDB();
+    const filterdDB = DB.filter(flight => flight.status === this.props.currentFilter);
 
-    if(isNaN(this.props.search)) {
+    if(isNaN(this.props.search)) { // Проверка на то, ищем ли мы по номеру рейса (int) или по городу (string)
+      // Обязательно переводим поисковой запрос и город в нижний регистр, чтобы
+      // случайно не отфильтровать лишние города
       return filterdDB.filter(flight => flight.from.toLowerCase().includes(this.props.search.toLowerCase()));
     } else {
       return filterdDB.filter(flight => flight.number.includes(this.props.search))
@@ -20,9 +20,10 @@ class FlightsTable extends Component {
   }
 
   render() {
-    console.log(this.props);
-    const filteredDB = (!this.props.search) ? this.adjustDB() : this.filterDBbySubStr();
-    if (filteredDB.length > 0) {
+    const filteredDB = this.filterDBbySubStr();
+    // Проверяем, остались ли после сортировки какие-то элементы. Если нет,
+    // сообщаем об этом пользователю.
+    if (filteredDB.length) {
       return(
         <div>
           <Paper>

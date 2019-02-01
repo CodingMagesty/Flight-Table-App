@@ -4,15 +4,14 @@ import { Button } from '@material-ui/core';
 
 class Filters extends Component {
   clickHandler = (e, filter) => {
-    e.preventDefault();
+    e.preventDefault(); // Не перезагружать страницу
     this.props.updateFilter(filter)
   }
 
   render() {
     return(
-      <div>
-        <form>
-          <Button
+      <div style={{marginLeft: '-3.25%'}}>
+          <Button // Цвет кнопки меняется в зависимости от того, какой фильтр передается в props
             size="large" color={this.props.currentFilter === 'departured' ? 'primary' : 'default'}
             onClick={(e) => this.clickHandler(e, 'departured')}>
               Вылетевшие
@@ -27,7 +26,6 @@ class Filters extends Component {
             onClick={(e) => this.clickHandler(e, 'delayed')}>
               Задержанные
           </Button>
-        </form>
       </div>
     );
   }

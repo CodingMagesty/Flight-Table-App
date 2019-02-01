@@ -3,8 +3,10 @@ import { TextField }  from '@material-ui/core';
 import PropTypes from 'prop-types';
 
 class SearchInput extends Component {
+  // Поскольку хендлер вызывается на onChange, любое изменение вызовет
+  // динамическое обновление таблицы. 
   handleChange = (e) => {
-    e.preventDefault();
+    e.preventDefault(); // Не перезагружать страницу
     this.props.updateSearch((e.currentTarget.value));
   }
 
@@ -12,7 +14,7 @@ class SearchInput extends Component {
     const { search } = this.props;
     return (
       <div>
-        <TextField label="Номер Рейса или Город" value={search} onChange={this.handleChange} style={{margin: '2%'}}/>
+        <TextField label="Номер Рейса или Город" value={search} onChange={this.handleChange} style={{marginBottom: '2%'}}/>
       </div>
     );
   }
