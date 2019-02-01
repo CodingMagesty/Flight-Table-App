@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import './App.css';
 import SearchInput from '../SearchInput/SearchInput';
 import Filters from '../Filters/Filters';
 import FlightsTable from '../FlightsTable/FlightsTable';
+import { updateFilter } from '../../Actions/Filters';
+import { updateSearch } from '../../Actions/Search';
 
 class App extends Component {
   constructor(props) {
@@ -32,4 +35,18 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    currentFilter: state.Filter,
+    search: state.Search
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    updateFilter: (filter) => dispatch(updateFilter(filter)),
+    updateSearch: (search) => dispatch(updateSearch(search))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
