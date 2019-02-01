@@ -27,9 +27,9 @@ class App extends Component {
   render() {
     return (
       <div className="container">
-        <Filters updateFilter={this.updateFilter} currentFilter={this.state.currentFilter}/>
-        <SearchInput updateSearch={this.updateSearch} search={this.state.search}/>
-        <FlightsTable search={this.state.search} currentFilter={this.state.currentFilter}/>
+        <Filters updateFilter={this.props.updateFilter} currentFilter={this.props.currentFilter}/>
+        <SearchInput updateSearch={this.props.updateSearch} search={this.props.search}/>
+        <FlightsTable search={this.props.search} currentFilter={this.props.currentFilter}/>
       </div>
     );
   }
@@ -37,7 +37,7 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    currentFilter: state.Filter,
+    currentFilter: state.Filters,
     search: state.Search
   }
 }

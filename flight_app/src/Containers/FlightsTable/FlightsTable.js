@@ -20,6 +20,7 @@ class FlightsTable extends Component {
   }
 
   render() {
+    console.log(this.props);
     const filteredDB = (!this.props.search) ? this.adjustDB() : this.filterDBbySubStr();
     if (filteredDB.length > 0) {
       return(
