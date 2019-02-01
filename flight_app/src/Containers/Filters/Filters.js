@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Button } from '@material-ui/core';
 
 class Filters extends Component {
@@ -8,7 +9,6 @@ class Filters extends Component {
   }
 
   render() {
-    console.log(this.props.currentFilter)
     return(
       <div>
         <form>
@@ -31,6 +31,11 @@ class Filters extends Component {
       </div>
     );
   }
+}
+
+Filters.propTypes = {
+  updateFilter: PropTypes.func,
+  currentFilter: PropTypes.string
 }
 
 export default Filters;

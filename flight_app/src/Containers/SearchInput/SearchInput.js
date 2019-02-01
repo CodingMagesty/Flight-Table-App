@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { TextField }  from '@material-ui/core';
+import PropTypes from 'prop-types';
 
 class SearchInput extends Component {
   handleChange = (e) => {
@@ -15,6 +16,11 @@ class SearchInput extends Component {
       </div>
     );
   }
+}
+
+SearchInput.propTypes = {
+  updateSearch: PropTypes.func,
+  search: PropTypes.string
 }
 
 export default SearchInput;

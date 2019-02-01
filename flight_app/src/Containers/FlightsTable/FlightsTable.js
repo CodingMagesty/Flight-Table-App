@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Table, TableHead, TableBody, TableRow, TableCell, Paper } from '@material-ui/core';
+import PropTypes from 'prop-types';
 
 import DB from '../../DataBase/database.js';
 
@@ -53,6 +54,11 @@ class FlightsTable extends Component {
       return <p>По вашему запросу ничего не найдено</p>
     }
   }
+}
+
+FlightsTable.propTypes = {
+  search: PropTypes.string,
+  currentFilter: PropTypes.string
 }
 
 export default FlightsTable;
