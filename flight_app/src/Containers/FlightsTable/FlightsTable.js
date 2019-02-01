@@ -12,18 +12,15 @@ class FlightsTable extends Component {
     const filterdDB = this.adjustDB();
 
     if(isNaN(this.props.search)) {
-<<<<<<< HEAD
       return filterdDB.filter(flight => flight.from.toLowerCase().includes(this.props.search.toLowerCase()));
-=======
-      return filterdDB.filter(flight => flight.from.includes(this.props.search));
->>>>>>> 7cefcbbb9c97c9bd29bee80bc4eac597f54a63d2
     } else {
       return filterdDB.filter(flight => flight.number.includes(this.props.search))
     }
   }
 
   render() {
-    const filterdDB = (!this.props.search) ? this.adjustDB() : this.filterDBbySubStr();
+    const filteredDB = (!this.props.search) ? this.adjustDB() : this.filterDBbySubStr();
+    if (filteredDB.length > 0) {
       return(
         <div>
           <Paper>
@@ -38,7 +35,7 @@ class FlightsTable extends Component {
               </TableHead>
               <TableBody>
               {
-                filterdDB.map(flight => (
+                filteredDB.map(flight => (
                   <TableRow key={flight.id}>
                     <TableCell>{flight.number}</TableCell>
                     <TableCell>{flight.from}</TableCell>
@@ -52,7 +49,10 @@ class FlightsTable extends Component {
           </Paper>
         </div>
       );
+    } else {
+      return <p>По вашему запросу ничего не найдено</p>
     }
+  }
 }
 
 export default FlightsTable;
