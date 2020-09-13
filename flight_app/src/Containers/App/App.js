@@ -2,20 +2,24 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { updateFilter } from '../../Actions/Filters';
 import { updateSearch } from '../../Actions/Search';
+import {setData} from '../../Actions/App';
 
 import SearchInput from '../SearchInput/SearchInput';
-import Filters from '../Filters/Filters';
-import FlightsTable from '../FlightsTable/FlightsTable';
+import FlightsTable from '../MainTable/MainTable';
+import {fetchData} from '../../Utils/utils';
 
 import './App.css';
 
 class App extends Component {
+  async componentDidMount(){
+    const DB = await fetchData();
+    this.props.setData(DB);
+  }
   render() {
     return (
       <div className="container">
-        <Filters updateFilter={this.props.updateFilter} currentFilter={this.props.currentFilter}/>
         <SearchInput updateSearch={this.props.updateSearch} search={this.props.search}/>
-        <FlightsTable search={this.props.search} currentFilter={this.props.currentFilter}/>
+        <FlightsTable />
       </div>
     );
   }
@@ -24,14 +28,16 @@ class App extends Component {
 const mapStateToProps = (state) => {
   return {
     currentFilter: state.Filters,
-    search: state.Search
+    search: state.Search,
+    data: state.App,
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     updateFilter: (filter) => dispatch(updateFilter(filter)),
-    updateSearch: (search) => dispatch(updateSearch(search))
+    updateSearch: (search) => dispatch(updateSearch(search)),
+    setData: (data) => dispatch(setData(data))
   }
 }
 

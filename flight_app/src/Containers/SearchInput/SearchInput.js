@@ -1,20 +1,33 @@
 import React, { Component } from 'react';
-import { TextField }  from '@material-ui/core';
+import { Button, TextField }  from '@material-ui/core';
 import PropTypes from 'prop-types';
 
 class SearchInput extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state ={
+      currentSearch: '',
+    }
+  }
   // Поскольку хендлер вызывается на onChange, любое изменение вызовет
   // динамическое обновление таблицы. 
   handleChange = (e) => {
     e.preventDefault(); // Не перезагружать страницу
-    this.props.updateSearch((e.currentTarget.value));
+    this.props.updateSearch(this.state.currentSearch);
+  }
+
+  onSearchChange = (e) => {
+    e.preventDefault(); // Не перезагружать страницу
+    this.setState({ currentSearch: e.currentTarget.value })
   }
 
   render() {
-    const { search } = this.props;
+    const { currentSearch } = this.state;
     return (
       <div>
-        <TextField label="Номер Рейса или Город" value={search} onChange={this.handleChange} style={{marginBottom: '2%'}}/>
+        <TextField label="Хули ищём?  " value={currentSearch}  onChange={this.onSearchChange} style={{marginBottom: '2%'}}/>
+        <Button  onClick={this.handleChange} >ISHI</Button>
       </div>
     );
   }
